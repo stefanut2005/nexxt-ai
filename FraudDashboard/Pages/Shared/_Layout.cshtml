@@ -1,0 +1,94 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fraud Dashboard</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="app-shell">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="app-logo">🕵️‍♂️</div>
+            <div class="app-name">FraudWatch</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a asp-page="/Index" class="nav-link">📊 Dashboard</a>
+            <a asp-page="/Transactions/Index" class="nav-link">💳 Transactions</a>
+        </nav>
+    </aside>
+
+    <main class="main-area">
+        <header class="topbar">
+            <div class="topbar-inner">
+
+                <div class="page-heading">
+                    <div class="page-heading-text">
+                        <div class="page-heading-title">@ViewData["Title"]</div>
+                        <div class="page-heading-sub">@ViewData["Subtitle"]</div>
+                    </div>
+                </div>
+
+                <div class="page-heading-right">
+                    <div class="kpi-bubble">
+                        <div class="kpi-mini-card">
+                            <div class="kpi-mini-label">High Risk Today</div>
+                            <div class="kpi-mini-value" id="highRiskCount">--</div>
+                        </div>
+                        <div class="kpi-mini-card">
+                            <div class="kpi-mini-label">Avg Score</div>
+                            <div class="kpi-mini-value" id="avgRisk">--%</div>
+                        </div>
+                        <button id="themeToggle"
+                                class="bubble-toggle"
+                                type="button"
+                                title="Toggle dark mode">
+                            🌙
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="page-content">
+            @RenderBody()
+        </section>
+    </main>
+
+    <!-- Floating AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header" id="chatToggle">
+            <div class="chat-header-left">
+                <div class="chat-title">AI Analyst</div>
+                <div class="chat-sub">Ask about fraud patterns…</div>
+            </div>
+            <div class="chat-collapse" id="chatCollapseBtn">▼</div>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-messages" id="chatMessages"></div>
+            <form class="chat-input-row" id="chatForm">
+                <input class="chat-input" id="chatText" placeholder="ex: de ce e tranzactia TX-2025-0001 risc mare?" />
+                <button class="chat-send" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/chat.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script>
+    (function(){
+        const saved = localStorage.getItem('fd-theme');
+        if(saved === 'dark'){
+            document.documentElement.setAttribute('data-theme','dark');
+        }
+    })();
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,100 @@
+@page
+@model FraudDashboard.Pages.IndexModel
+@{
+    var top5 = Model.Transactions
+        .OrderByDescending(t => t.Risk)
+        .Take(5)
+        .ToList();
+}
+
+<div class="page-inner">
+
+    <!-- Page heading / intro -->
+    <div class="card card-tight">
+        <div class="card-header" style="margin-bottom:.5rem;">
+            <div>
+                <div class="card-title" style="font-size:1.1rem;">High Risk Today</div>
+                <div class="card-subtitle">Live fraud risk across recent transactions</div>
+            </div>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">High Risk (&gt;=80%)</div>
+                <div class="kpi-value">@Model.Transactions.Count(t => t.Risk >= 80)</div>
+                <div class="kpi-desc">Needs manual review</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-label">Average Risk</div>
+                <div class="kpi-value">
+                    @(
+                        Model.Transactions.Count == 0
+                        ? 0
+                        : Math.Round(Model.Transactions.Average(t => t.Risk), 1)
+                    )%
+                </div>
+                <div class="kpi-desc">Across last @Model.Transactions.Count tx</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top risky table -->
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <div class="card-title">Top Risky Transactions</div>
+                <div class="card-subtitle">Highest fraud probability right now</div>
+            </div>
+            <a asp-page="/Transactions/Index" class="btn btn-primary">View all</a>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="tx-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Merchant</th>
+                        <th>Amount</th>
+                        <th>When</th>
+                        <th>Risk</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in top5)
+                    {
+                    <tr class="tx-row" data-tx-id="@t.Id">
+                        <td>@t.Id</td>
+                        <td>@t.Merchant</td>
+                        <td>@t.Amount @t.Currency</td>
+                        <td>@t.Timestamp.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>
+                            <span class="risk-chip @GetRiskClass(t.Risk)">@Math.Round(t.Risk,1)%</span>
+                        </td>
+                        <td>
+                            <span class="status-badge @GetStatusClass(t.Risk)">@t.RiskLabel</span>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@functions {
+    string GetRiskClass(double risk)
+    {
+        if (risk >= 80) return "risk-high";
+        if (risk >= 40) return "risk-mid";
+        return "risk-low";
+    }
+    string GetStatusClass(double risk)
+    {
+        if (risk >= 80) return "status-high";
+        if (risk >= 40) return "status-mid";
+        return "status-low";
+    }
+}

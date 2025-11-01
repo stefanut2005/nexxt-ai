@@ -1,0 +1,226 @@
+@page
+@model FraudDashboard.Pages.Transactions.IndexModel
+
+<div class="tx-container-card">
+
+    <div class="tx-container-header-row">
+
+        <div class="tx-container-left">
+            <div class="tx-container-title">All Transactions</div>
+            <div class="tx-container-sub">Fraud probability shown per row</div>
+        </div>
+
+        <div class="tx-container-right">
+            <form method="get" class="risk-filter-form">
+
+                <div class="filter-block">
+                    <label class="filter-label">
+                        Min risk:
+                        <span id="minRiskVal">@Model.MinRisk%</span>
+                    </label>
+
+                    <input type="range"
+                           name="MinRisk"
+                           min="0"
+                           max="100"
+                           value="@Model.MinRisk"
+                           class="risk-slider"
+                           oninput="document.getElementById('minRiskVal').innerText=this.value+'%';" />
+                </div>
+
+                <button class="btn-secondary" type="submit">Apply</button>
+
+                <div class="search-control">
+                    <span class="search-icon">🔍</span>
+                    <input id="txSearch"
+                           class="search-field"
+                           placeholder="Search merchant / ID..." />
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="tx-container-table-wrapper">
+        <table class="tx-table" id="txTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Card</th>
+                    <th>Merchant</th>
+                    <th>Amount</th>
+                    <th>When</th>
+                    <th>Risk</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.Transactions)
+            {
+                <tr class="tx-row" data-tx-id="@t.Id" onclick="openDetailModal('@t.Id')">
+                    <td>@t.Id</td>
+                    <td>**** @t.CardLast4</td>
+                    <td>@t.Merchant</td>
+                    <td>@t.Amount @t.Currency</td>
+                    <td>@t.Timestamp.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>
+                        <span class="risk-chip @GetRiskClass(t.Risk)">
+                            @Math.Round(t.Risk,1)%
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge @GetStatusClass(t.Risk)">
+                            @t.RiskLabel
+                        </span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detailOverlay" style="display:none" onclick="closeDetailModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <div>
+                <div class="modal-title" id="detailTxId">TX-???</div>
+                <div class="modal-sub" id="detailMerchant">Merchant name</div>
+            </div>
+            <button class="modal-close" onclick="closeDetailModal(event)">✕</button>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-row"><span class="label">Card:</span><span class="value" id="detailCard">**** 0000</span></div>
+            <div class="modal-row"><span class="label">Amount:</span><span class="value" id="detailAmount">0 EUR</span></div>
+            <div class="modal-row"><span class="label">When:</span><span class="value" id="detailWhen">-</span></div>
+            <div class="modal-row"><span class="label">Location:</span><span class="value" id="detailLoc">-</span></div>
+            <div class="modal-row"><span class="label">Risk:</span><span class="value"><span class="risk-chip" id="detailRisk">--%</span></span></div>
+            <div class="modal-row"><span class="label">Status:</span><span class="value"><span class="status-badge" id="detailStatus">-</span></span></div>
+
+            <div class="modal-section">
+                <div class="section-title">Why flagged?</div>
+                <div class="section-text" id="detailNotes">-</div>
+            </div>
+
+            <div class="modal-section">
+                <div class="section-title">Model signals</div>
+                <pre class="feature-json" id="detailFeatures">{}</pre>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="askAiWhy()">Ask AI why</button>
+            <button class="btn-secondary" onclick="closeDetailModal(event)">Close</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+// live search filter
+const txSearch = document.getElementById('txSearch');
+if (txSearch) {
+    txSearch.addEventListener('input', () => {
+        const q = txSearch.value.toLowerCase();
+        document.querySelectorAll('#txTable tbody tr').forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(q) ? '' : 'none';
+        });
+    });
+}
+
+// dump all tx into JS for modal
+const allTx = [
+@foreach (var t in Model.Transactions)
+{
+    <text>{
+        id: "@t.Id",
+        card: "**** @t.CardLast4",
+        merchant: "@t.Merchant",
+        amount: "@t.Amount @t.Currency",
+        when: "@t.Timestamp.ToString("yyyy-MM-dd HH:mm")",
+        location: "@t.Location",
+        risk: @t.Risk.ToString(System.Globalization.CultureInfo.InvariantCulture),
+        riskLabel: "@t.RiskLabel",
+        notes: "@t.Notes".Replace("\"","\\\""),
+        features: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(t.Features ?? new Dictionary<string, object>()))
+    },</text>
+}
+];
+
+let currentTxId = null;
+
+function openDetailModal(id){
+    currentTxId = id;
+    const tx = allTx.find(x => x.id === id);
+    if(!tx) return;
+
+    document.getElementById('detailTxId').innerText = tx.id;
+    document.getElementById('detailMerchant').innerText = tx.merchant;
+    document.getElementById('detailCard').innerText = tx.card;
+    document.getElementById('detailAmount').innerText = tx.amount;
+    document.getElementById('detailWhen').innerText = tx.when;
+    document.getElementById('detailLoc').innerText = tx.location;
+
+    const riskEl = document.getElementById('detailRisk');
+    riskEl.innerText = Math.round(tx.risk*10)/10 + '%';
+    riskEl.className = 'risk-chip ' + riskClass(tx.risk);
+
+    const statusEl = document.getElementById('detailStatus');
+    statusEl.innerText = tx.riskLabel;
+    statusEl.className = 'status-badge ' + statusClass(tx.risk);
+
+    document.getElementById('detailNotes').innerText = tx.notes;
+    document.getElementById('detailFeatures').textContent = JSON.stringify(tx.features, null, 2);
+
+    document.getElementById('detailOverlay').style.display='flex';
+}
+
+function closeDetailModal(e){
+    e?.preventDefault();
+    document.getElementById('detailOverlay').style.display='none';
+}
+
+function riskClass(r){
+    if (r >= 80) return 'risk-high';
+    if (r >= 40) return 'risk-mid';
+    return 'risk-low';
+}
+function statusClass(r){
+    if (r >= 80) return 'status-high';
+    if (r >= 40) return 'status-mid';
+    return 'status-low';
+}
+
+// Ask AI in modal
+async function askAiWhy(){
+    if(!currentTxId) return;
+    const q = `de ce tranzactia ${currentTxId} e risc mare?`;
+    window.appendUserChat(q);
+    await window.sendChat(q);
+
+    const chatWidget = document.getElementById('chatWidget');
+    chatWidget.classList.add('open');
+    document.getElementById('chatBody').style.display='flex';
+}
+    </script>
+}
+
+@functions {
+    string GetRiskClass(double risk)
+    {
+        if (risk >= 80) return "risk-high";
+        if (risk >= 40) return "risk-mid";
+        return "risk-low";
+    }
+
+    string GetStatusClass(double risk)
+    {
+        if (risk >= 80) return "status-high";
+        if (risk >= 40) return "status-mid";
+        return "status-low";
+    }
+}
