@@ -2,7 +2,7 @@
 // AI Analyst Chat Client
 // =========================
 
-const AI_API_URL = "http://localhost:8001/query";
+const AI_API_URL = "http://localhost:8080/query";
 
 const chatWidget = document.getElementById("chatWidget");
 const chatToggle = document.getElementById("chatToggle");

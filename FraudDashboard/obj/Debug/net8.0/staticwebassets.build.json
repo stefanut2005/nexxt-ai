@@ -1,1 +1,77 @@
-{"Version":1,"Hash":"jNhxoUiHdscaIsbWCd+N/GOuxMjXI79l9V1qQlCiwV0=","Source":"FraudDashboard","BasePath":"_content/FraudDashboard","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[{"Name":"FraudDashboard\\wwwroot","Source":"FraudDashboard","ContentRoot":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\","BasePath":"_content/FraudDashboard","Pattern":"**"}],"Assets":[{"Identity":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\css\\site.css","SourceId":"FraudDashboard","SourceType":"Discovered","ContentRoot":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\","BasePath":"_content/FraudDashboard","RelativePath":"css/site#[.{fingerprint}]?.css","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"qhl2kc697d","Integrity":"skLYv4MOKCKG99PIaoRC7zVdS6B2MVdf9ErV4h/1FQs=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\css\\site.css","FileLength":18736,"LastWriteTime":"2025-11-01T17:21:01+00:00"},{"Identity":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\js\\chat.js","SourceId":"FraudDashboard","SourceType":"Discovered","ContentRoot":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\","BasePath":"_content/FraudDashboard","RelativePath":"js/chat#[.{fingerprint}]?.js","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"u9j5puszqg","Integrity":"Lp5JnpnlFUC8ahq6uEXCMChywuCOKhwXWx50DDA502g=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\js\\chat.js","FileLength":4457,"LastWriteTime":"2025-11-01T19:16:55+00:00"},{"Identity":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\js\\dashboard.js","SourceId":"FraudDashboard","SourceType":"Discovered","ContentRoot":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\","BasePath":"_content/FraudDashboard","RelativePath":"js/dashboard#[.{fingerprint}]?.js","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"aqcpdgvade","Integrity":"sumvV+Vpo/9nXX4NN7UBl23cT8NyzsIWOhuwKNPi4CA=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\js\\dashboard.js","FileLength":1527,"LastWriteTime":"2025-11-01T15:02:14+00:00"}],"Endpoints":[{"Route":"css/site.css","AssetFile":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\css\\site.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"18736"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"skLYv4MOKCKG99PIaoRC7zVdS6B2MVdf9ErV4h/1FQs=\""},{"Name":"Last-Modified","Value":"Sat, 01 Nov 2025 17:21:01 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-skLYv4MOKCKG99PIaoRC7zVdS6B2MVdf9ErV4h/1FQs="}]},{"Route":"css/site.qhl2kc697d.css","AssetFile":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\css\\site.css","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"18736"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\"skLYv4MOKCKG99PIaoRC7zVdS6B2MVdf9ErV4h/1FQs=\""},{"Name":"Last-Modified","Value":"Sat, 01 Nov 2025 17:21:01 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"qhl2kc697d"},{"Name":"label","Value":"css/site.css"},{"Name":"integrity","Value":"sha256-skLYv4MOKCKG99PIaoRC7zVdS6B2MVdf9ErV4h/1FQs="}]},{"Route":"js/chat.js","AssetFile":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\js\\chat.js","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"4457"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\"Lp5JnpnlFUC8ahq6uEXCMChywuCOKhwXWx50DDA502g=\""},{"Name":"Last-Modified","Value":"Sat, 01 Nov 2025 19:16:55 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-Lp5JnpnlFUC8ahq6uEXCMChywuCOKhwXWx50DDA502g="}]},{"Route":"js/chat.u9j5puszqg.js","AssetFile":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\js\\chat.js","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"4457"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\"Lp5JnpnlFUC8ahq6uEXCMChywuCOKhwXWx50DDA502g=\""},{"Name":"Last-Modified","Value":"Sat, 01 Nov 2025 19:16:55 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"u9j5puszqg"},{"Name":"label","Value":"js/chat.js"},{"Name":"integrity","Value":"sha256-Lp5JnpnlFUC8ahq6uEXCMChywuCOKhwXWx50DDA502g="}]},{"Route":"js/dashboard.aqcpdgvade.js","AssetFile":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\js\\dashboard.js","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"1527"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\"sumvV+Vpo/9nXX4NN7UBl23cT8NyzsIWOhuwKNPi4CA=\""},{"Name":"Last-Modified","Value":"Sat, 01 Nov 2025 15:02:14 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"aqcpdgvade"},{"Name":"label","Value":"js/dashboard.js"},{"Name":"integrity","Value":"sha256-sumvV+Vpo/9nXX4NN7UBl23cT8NyzsIWOhuwKNPi4CA="}]},{"Route":"js/dashboard.js","AssetFile":"D:\\Work\\NeextHack\\frontend\\FraudDashboard\\wwwroot\\js\\dashboard.js","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"1527"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\"sumvV+Vpo/9nXX4NN7UBl23cT8NyzsIWOhuwKNPi4CA=\""},{"Name":"Last-Modified","Value":"Sat, 01 Nov 2025 15:02:14 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-sumvV+Vpo/9nXX4NN7UBl23cT8NyzsIWOhuwKNPi4CA="}]}]}
+{
+  "Version": 1,
+  "Hash": "Y1EtUQqZJ9CYTu6rlZ/lOdKKCSnxpRwMY3BVPgbYsIk=",
+  "Source": "FraudDashboard",
+  "BasePath": "_content/FraudDashboard",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "FraudDashboard/wwwroot",
+      "Source": "FraudDashboard",
+      "ContentRoot": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/",
+      "BasePath": "_content/FraudDashboard",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/css/site.css",
+      "SourceId": "FraudDashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/",
+      "BasePath": "_content/FraudDashboard",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/js/chat.js",
+      "SourceId": "FraudDashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/",
+      "BasePath": "_content/FraudDashboard",
+      "RelativePath": "js/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/chat.js"
+    },
+    {
+      "Identity": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/js/dashboard.js",
+      "SourceId": "FraudDashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/",
+      "BasePath": "_content/FraudDashboard",
+      "RelativePath": "js/dashboard.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/dashboard.js"
+    }
+  ]
+}

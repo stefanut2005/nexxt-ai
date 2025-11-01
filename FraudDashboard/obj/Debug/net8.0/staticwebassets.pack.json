@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/js/chat.js",
+      "PackagePath": "staticwebassets/js/chat.js"
+    },
+    {
+      "Id": "/mnt/c/Users/Stefan/Documents/GitHub/nexxt-ai/FraudDashboard/wwwroot/js/dashboard.js",
+      "PackagePath": "staticwebassets/js/dashboard.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.FraudDashboard.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.FraudDashboard.props",
+      "PackagePath": "build\\FraudDashboard.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.FraudDashboard.props",
+      "PackagePath": "buildMultiTargeting\\FraudDashboard.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.FraudDashboard.props",
+      "PackagePath": "buildTransitive\\FraudDashboard.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

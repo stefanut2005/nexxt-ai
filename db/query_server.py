@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 import os
@@ -133,6 +134,16 @@ def describe_schema(engine):
 
 app = FastAPI(title="DB Query via LLM")
 
+# Ensure CORS preflight (OPTIONS) is handled so browsers can POST JSON from the UI.
+# Using a permissive policy for local development; tighten origins in production.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 class QueryRequest(BaseModel):
     question: str
@@ -154,7 +165,8 @@ def startup():
     schema_description = describe_schema(engine) if engine else ""
     try:
         bedrock_client = make_bedrock_client()
-    except Exception:
+    except Exception as e:
+        print(e)
         bedrock_client = None
     model_id = get_env('CLAUDE_MODEL_ID', 'us.anthropic.claude-sonnet-4-20250514-v1:0')
 
